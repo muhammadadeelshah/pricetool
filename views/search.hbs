@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <div class="alert alert-danger" role="alert">
+                Process Started !!!
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <h1>SEARCH RESULTS</h1>
+        </div>
+        <div class="col-6">
+             <button type="button" id="trigger-action1" 
+             class="btn btn-success" 
+             >
+                Click Here To View Export in Excel
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+        <hr>
+        <ul>
+            {{#each data as |data id|}}
+                {{#if data.name}}
+                <li> {{data.name}}  <br> Price: <b> {{data.price}} </b> </li>                
+                {{/if}}
+            {{/each}}
+        </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('trigger-action').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/exp', {
+                method: 'GET',
+            });            
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+</script>
+
